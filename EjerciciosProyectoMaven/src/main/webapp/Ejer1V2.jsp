@@ -7,7 +7,7 @@
 <title>Ejer1 V2</title>
 </head>
 <body>
-    <form action="ServletEjer1V2" method="get">
+    <form action="ServletEjer1V2" method="post" >
         <fieldset>
             <legend>Saludo</legend>
             
