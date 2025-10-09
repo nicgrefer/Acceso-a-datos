@@ -7,4 +7,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
   <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- Parámetro de inicialización a nivel de contexto -->
+    <context-param>
+        <param-name>color</param-name>
+        <param-value>white</param-value>
+    </context-param>
+  
+
+  	
+  
 </web-app>

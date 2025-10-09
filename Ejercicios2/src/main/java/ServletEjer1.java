@@ -1,65 +1,72 @@
+
+
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 /**
- * Servlet implementation class Servlet1
+ * Servlet implementation class ServletEjer1
  */
-@WebServlet("/Servlet1")
+@WebServlet("/ServletEjer1")
 public class ServletEjer1 extends HttpServlet {
-    
-
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+	public String colorContext;
+	
     public ServletEjer1() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		super.init(config);
+		colorContext= config.getInitParameter("color");
+		getServletContext().setAttribute("color", colorContext);
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String nuevoColor = request.getParameter("color");
+        if (nuevoColor != null && !nuevoColor.isEmpty()) {
+            colorContext = nuevoColor;
+            getServletContext().setAttribute("color", colorContext);
+        }
 
         response.setContentType("text/html;charset=UTF-8");
 
-        // 1. Obtener parámetro de la URL
-        String color = request.getParameter("colorFonfo");
+        response.getWriter()
+            .append("<html>")
+            .append("<head><title>Color Servlet</title></head>")
+            .append("<body style='background-color:" + colorContext + ";'>")
+            .append("<h1>Color actual: " + colorContext + "</h1>")
+            .append("<form action='ServletEjer1V2' method='get'>")
+            .append("<button type='submit'>Ir al segundo servlet</button>")
+            .append("</form>")
+            .append("</body>")
+            .append("</html>");
+    
+	}
 
-        // 2. Si no viene nada, usar negro por defecto
-        if (color == null || color.isBlank()) {
-            color = "white"; 
-        }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
-        // 3. Generar la respuesta HTML con el color dinámico
-        response.getWriter().append(
-            "<!DOCTYPE html>" +
-            "<html>" +
-            "<head>" +
-            "<meta charset='UTF-8'>" +
-            "<title>Servlet1</title>" +
-            "<style>" +
-            "body { background-color: " + color + " }" +
-            "</style>" +
-            "</head>" +
-            "<body>" +
-            "<p> El color es " + color + "</p>"+
-            "<a href='ServletEjer1V2'>" +
-            "  <button type='button'>Click Me</button>" +
-            "</a>"+
-            "</body>"+
-            "</html>"
-        );
-
-        response.getWriter().close();
-    }
-
-    // Si quieres que doPost también funcione
-    /*
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-    */
 }
