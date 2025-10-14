@@ -23,7 +23,7 @@ public class ServletEjer2 extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-     public ArrayList<Persona> listaPersona = new ArrayList<Persona>();
+     
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,17 +32,25 @@ public class ServletEjer2 extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		// Recoger parámetros del formulario
-	    String nombre = request.getParameter("nombre");
+		String nombre = request.getParameter("nombre");
 	    String edadStr = request.getParameter("edad");
 	    String telefono = request.getParameter("telefono");
-		
+	    
+	    // Obtener la lista de la sesión o crear una nueva
+	    ArrayList<Persona> listaPersona = (ArrayList<Persona>) request.getSession().getAttribute("listaPersona");
+	    if (listaPersona == null) {
+	        listaPersona = new ArrayList<>();
+	    }
+	    
 	    if (nombre != null && edadStr != null && telefono != null) {
 	        try {
 	            int edad = Integer.parseInt(edadStr);
 	            Persona p = new Persona(nombre, edad, telefono);
 	            listaPersona.add(p);
+	            // Guardar en la sesión
+	            request.getSession().setAttribute("listaPersona", listaPersona);
 	        } catch (NumberFormatException e) {
-	            // si no es número, lo ignoramos
+	            // Manejar error
 	        }
 	    }
 
@@ -76,7 +84,6 @@ public class ServletEjer2 extends HttpServlet {
 							
 		// -> http://localhost:8081/Ejercicios2/ServletEjer2?nombre=Paco&&edad=29&&telefono=987654
 	}
-
 	
 
 }

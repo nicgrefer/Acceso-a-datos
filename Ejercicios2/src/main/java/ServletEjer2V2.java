@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @WebServlet("/ServletEjer2V2")
 public class ServletEjer2V2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private ServletEjer1 servlet1 = new ServletEjer1();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,13 +28,19 @@ public class ServletEjer2V2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<Persona>listaPersona = (ArrayList<Persona>) getServletContext().getAttribute("listaPersona");
+		ArrayList<Persona> listaPersona = (ArrayList<Persona>) request.getSession().getAttribute("listaPersona");
+	    
+	    if (listaPersona == null) {
+	        listaPersona = new ArrayList<>();
+	    }
+	    
+	    response.setContentType("text/html");
 		
 		
 		response.setContentType("text/html");
 		response.getWriter().append("<!DOCTYPE html>")
 							.append("<head><meta charset='UTF-8'><title>Lista de Personas</title></head>")
-							.append("<body> <h1>Personas Registradas</h1> <table border='1' cellpadding='5' cellspacing='0'>")
+							.append("<body> <h1>Personas Registradas (Servlet2)</h1> <table border='1' cellpadding='5' cellspacing='0'>")
 							.append("<tr><th>Nombre</th><th>Edad</th><th>Teléfono</th></tr>");
 		
 		for (Persona p: listaPersona) {
