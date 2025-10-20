@@ -66,6 +66,9 @@ public class ServletEjer1 extends HttpServlet {
 					precioTotal+=1;
 					break;
 				}
+				case "ticket":{
+					break;
+				}
 				
 			}
 			
@@ -75,7 +78,9 @@ public class ServletEjer1 extends HttpServlet {
 		response.setContentType("text/html");
 		response.getWriter().append("<body>\r\n");
 		response.getWriter().append("    <h1>Tienda LeterA</h1>\r\n");
+		if (boton != null && boton.equals("ticket")){
 		response.getWriter().append("    <p>Total acumulado: " + precioTotal + "€</p>\r\n");
+		}
 		response.getWriter().append("    <form method=\"get\">\r\n");
 		response.getWriter().append("        <table>\r\n");
 		response.getWriter().append("        <tr>\r\n");
@@ -86,7 +91,7 @@ public class ServletEjer1 extends HttpServlet {
 		response.getWriter().append("        </tr>\r\n");
 		response.getWriter().append("    </table>\r\n");
 		response.getWriter().append("    <br>\r\n");
-		response.getWriter().append("    <button type=\"submit\" name=\"accion\" value=\"ticket\">Ver Tiket</button>\r\n");
+		response.getWriter().append("    <button type=\"submit\" name=\"boton\" value=\"ticket\">Ver Tiket</button>\r\n");
 		response.getWriter().append("    </form>\r\n");
 		response.getWriter().append("</body>");
 		response.getWriter().close();
