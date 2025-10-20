@@ -31,12 +31,12 @@ public class ServletEjer2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 				
-		
-		String user = request.getParameter("user");
-	
-		
 		HttpSession session = request.getSession(true);
+		String user = request.getParameter("user");
 		ArrayList<String>listUsers = (ArrayList<String>) session.getAttribute("list");
+		
+	if (user != null || listUsers != null) {
+		
 		
 		if (session.getAttribute("list")==null) {
 			listUsers = new ArrayList();
@@ -64,6 +64,6 @@ public class ServletEjer2 extends HttpServlet {
 		
 	}
 
-
+	}
 
 }
