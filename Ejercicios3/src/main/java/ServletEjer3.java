@@ -32,8 +32,46 @@ public class ServletEjer3 extends HttpServlet {
             }
         }
 
+        // Si presiona "Ver compra", mostrar el resumen directamente
+        if (boton != null && boton.equals("verTiket")) {
+            html.append("<h1>Bienvenido a Web Librería</h1>")
+                .append("<h2>Resumen de la compra</h2>")
+                .append("<table border='1'>")
+                .append("<tr><th>Libro</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th></tr>");
+
+            double total = 0.0;
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().startsWith("compra_")) {
+                        String[] compra = cookie.getValue().split("-");
+                        if (compra.length >= 3) {
+                            String libroCompra = compra[0];
+                            int cant = Integer.parseInt(compra[1]);
+                            double precioUnitario = Double.parseDouble(compra[2]);
+                            double subtotal = cant * precioUnitario;
+                            total += subtotal;
+                            html.append("<tr>")
+                                .append("<td>").append(libroCompra).append("</td>")
+                                .append("<td>").append(cant).append("</td>")
+                                .append("<td>").append(precioUnitario).append("</td>")
+                                .append("<td>").append(subtotal).append("</td>")
+                                .append("</tr>");
+                        }
+                    }
+                }
+            }
+            html.append("<tr><td colspan='3'><strong>Total</strong></td><td><strong>")
+                .append(String.format("%.2f", total))
+                .append("</strong></td></tr>")
+                .append("</table>")
+                .append("<br>")
+                .append("<form method='get' action='ServletEjer3'>")
+                .append("<button type='submit' name='boton' value='comproMas'>Seguir comprando</button>")
+                .append("</form>");
+        }
         // Mostrar formulario de selección si no hay libro válido, cantidad válida o se selecciona "Seguir comprando"
-        if (libro == null || libro.isEmpty() || cantidad < 1 || (boton != null && boton.equals("comproMas"))) {
+        else if (libro == null || libro.isEmpty() || cantidad < 1 || (boton != null && boton.equals("comproMas"))) {
             html.append("<h1>Bienvenido a Web Librería. Seleccione el libro</h1>")
                 .append("<h3>")
                 .append("<form method='get' action='ServletEjer3'>")
@@ -52,7 +90,7 @@ public class ServletEjer3 extends HttpServlet {
             // Libro y cantidad válidos seleccionados
             String precio = obtenerPrecio(libro);
             // Guardar compra en una cookie
-            String valorCookie = libro + "-" + cantidad + "-" + precio + "-";
+            String valorCookie = libro + "-" + cantidad + "-" + precio;
             Cookie cookieCompra = new Cookie("compra_" + System.currentTimeMillis(), valorCookie);
             cookieCompra.setMaxAge(24 * 60 * 60); // Cookie expira en 1 día
             response.addCookie(cookieCompra);
@@ -62,40 +100,6 @@ public class ServletEjer3 extends HttpServlet {
                 .append("<button type='submit' name='boton' value='comproMas'>Seguir comprando</button>")
                 .append("<button type='submit' name='boton' value='verTiket'>Ver compra</button>")
                 .append("</form>");
-
-            // Mostrar resumen de compra si se selecciona "Ver compra"
-            if (boton != null && boton.equals("verTiket")) {
-                html.append("<h2>Resumen de la compra</h2>")
-                    .append("<table border='1'>")
-                    .append("<tr><th>Libro</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th></tr>");
-
-                double total = 0.0;
-                Cookie[] cookies = request.getCookies();
-                if (cookies != null) {
-                    for (Cookie cookie : cookies) {
-                        if (cookie.getName().startsWith("compra_")) {
-                            String[] compra = cookie.getValue().split("-");
-                            if (compra.length == 3) {
-                                String libroCompra = compra[0];
-                                int cant = Integer.parseInt(compra[1]);
-                                double precioUnitario = Double.parseDouble(compra[2]);
-                                double subtotal = cant * precioUnitario;
-                                total += subtotal;
-                                html.append("<tr>")
-                                    .append("<td>").append(libroCompra).append("</td>")
-                                    .append("<td>").append(cant).append("</td>")
-                                    .append("<td>").append(precioUnitario).append("</td>")
-                                    .append("<td>").append(subtotal).append("</td>")
-                                    .append("</tr>");
-                            }
-                        }
-                    }
-                }
-                html.append("<tr><td colspan='3'>Total</td><td>")
-                    .append(String.format("%.2f", total))
-                    .append("</td></tr>")
-                    .append("</table>");
-            }
         }
 
         response.getWriter().write(html.toString());
@@ -114,7 +118,7 @@ public class ServletEjer3 extends HttpServlet {
             case "python":
                 return "30.00";
             default:
-                return "0.00"; // Precio por defecto para libro inválido
+                return "0.00";
         }
     }
 }
