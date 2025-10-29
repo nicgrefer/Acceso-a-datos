@@ -42,7 +42,7 @@ public class ServletEjer1 extends HttpServlet {
 		
 		
 		// Recuperamos valor actual de la sesion
-		int precioTotal = (int) sesion.getAttribute("total");
+		Integer precioTotal = (Integer) sesion.getAttribute("total");
 		
 		String boton = request.getParameter("boton");
 		
