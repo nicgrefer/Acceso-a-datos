@@ -105,7 +105,7 @@ public class Servlet3Ejer3 extends HttpServlet {
     		response.getWriter().append("<h1>No seleccionó unidades</h1>");
     	}
 		response.getWriter().append("<p><a href='Servlet3Ejer3'>Sigue comprando</a></p>")
-		.append("<p><a href='Servlet3Ejer3'>Ver compra</a>").append("</body>").append("</html>");
+		.append("<p><a href='Servlet3Ejer3Bis'>Ver compra</a>").append("</body>").append("</html>");
 		response.getWriter().close();
 		
 	}

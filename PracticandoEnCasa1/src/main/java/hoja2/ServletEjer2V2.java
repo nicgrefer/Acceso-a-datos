@@ -1,3 +1,4 @@
+package hoja2;
 
 
 import jakarta.servlet.ServletException;
@@ -28,7 +29,7 @@ public class ServletEjer2V2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<Persona> listaPersona = (ArrayList<Persona>) request.getSession().getAttribute("listaPersona");
+		ArrayList<Persona> listaPersona = (ArrayList<Persona>) request.getSession().getAttribute("listpers");
 	    
 	    if (listaPersona == null) {
 	        listaPersona = new ArrayList<>();

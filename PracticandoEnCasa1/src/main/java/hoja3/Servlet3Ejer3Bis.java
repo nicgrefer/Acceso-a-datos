@@ -16,52 +16,75 @@ import java.util.Map;
 @WebServlet("/Servlet3Ejer3Bis")
 public class Servlet3Ejer3Bis extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Map <String, String> lib;
+	private static Map<String, String> lib;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public Servlet3Ejer3Bis() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public void init(ServletConfig config) throws ServletException {
     	super.init(config);
+    	// ✅ Obtener el Map del ServletContext
     	lib = (Map<String, String>) config.getServletContext().getAttribute("libros");
     	
+    	// ✅ DEBUG: Verificar si el Map se cargó correctamente
+    	if (lib == null) {
+    		System.out.println("❌ ERROR: El Map 'libros' es NULL en Servlet3Ejer3Bis");
+    	} else {
+    		System.out.println("✅ Map 'libros' cargado correctamente con " + lib.size() + " elementos");
+    	}
     }
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Cookie [] cookies = request.getCookies();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
-		response.setContentType("text/html");
+		Cookie[] cookies = request.getCookies();
+		double precioFin = 0.00;
 		
-		response.getWriter().append("<tr>"
-				+ "<td>Titulo del libro</td>"
-				+ "<td>Unidades</td>"
-				+ "<td>Precio</td>"
-				+ "</tr>");
+		response.setContentType("text/html; charset=UTF-8");
 		
-		if (cookies != null) {
+		// ✅ ESTRUCTURA HTML COMPLETA - ESTO ES LO QUE FALTABA
+		response.getWriter().append("<!DOCTYPE html>");
+		response.getWriter().append("<html>");
+		response.getWriter().append("<head>");
+		response.getWriter().append("<title>Carrito</title>");
+		response.getWriter().append("</head>");
+		response.getWriter().append("<body>");
+		response.getWriter().append("<h1>Carrito de Compra</h1>");
+		
+		// Ahora sí la tabla
+		response.getWriter().append("<table border='1'>");
+		response.getWriter().append("<tr>");
+		response.getWriter().append("<td>Titulo del libro</td>");
+		response.getWriter().append("<td>Unidades</td>");
+		response.getWriter().append("<td>Precio</td>");
+		response.getWriter().append("</tr>");
+		
+		if (cookies != null && lib != null) {
 			for (Cookie c : cookies) {
-				if (c.getName().equals("java") || c.getName().equals("c") ||
-						c.getName().equals("cpp") || c.getName().equals("vr") ||
-						c.getName().equals("phyton")) {
-					response.getWriter().append("<tr>"
-							+ "<td>"+c.getName()+"</td>"
-							+ "<td>"+c.getValue()+"</td>"
-							+ "<td></td>"
-							+ "</tr>");
+				if (lib.containsKey(c.getName())) {
+					String nombreLibro = c.getName();
+					int numero = Integer.parseInt(c.getValue());
+					double precioUnidad = Double.parseDouble(lib.get(nombreLibro));
+					
+					double precioProducto = precioUnidad * numero;
+					precioFin += precioProducto;
+					
+					response.getWriter().append("<tr>");
+					response.getWriter().append("<td>" + nombreLibro + "</td>");
+					response.getWriter().append("<td>" + numero + "</td>");
+					response.getWriter().append("<td>" + String.format("%.2f", precioProducto) + "</td>");
+					response.getWriter().append("</tr>");
 				}
-				
 			}
 		}
 		
+		response.getWriter().append("</table>");
+		response.getWriter().append("<h3>Total = " + String.format("%.2f", precioFin) + " €</h3>");
+		response.getWriter().append("<p><a href='Servlet3Ejer3'>Seguir comprando</a></p>");
+		
+		// ✅ CERRAR HTML - ESTO TAMBIÉN FALTABA
+		response.getWriter().append("</body>");
+		response.getWriter().append("</html>");
  	}
-
 }
