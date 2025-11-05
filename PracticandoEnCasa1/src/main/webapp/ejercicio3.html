@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<form action="ServletEjer3" method="post">
+		<fieldset>
+			<legend><b>Recogida de datos</b></legend>
+					<table>
+				<tr>
+					<label for="nombre">Nombre</label><br>
+				</tr>
+				<tr>
+					<input type="text" name="nombre"><br>
+				</tr>
+				<tr>
+					<label for="apellidos">Apellidos</label><br>
+				</tr>
+				<tr>
+					<input type="text" name="apellidos"><br>
+				</tr>
+				<tr>
+					<label for="direccion">Direccion</label><br>
+				</tr>
+				<tr>
+					<textarea name="direccion" cols="50" rows="25"></textarea><br>
+				</tr>
+				<tr>
+					<label for="tarjeta">Tipo de Tarjeta</label><br>
+				</tr>
+				<tr>
+					<input type="radio" name="tarjeta" value="visa">
+				</tr>
+				<label for="visa">Visa</label><br>
+				<tr>
+					<input type="radio" name="tarjeta" value="mastercard">
+				</tr>
+				<tr>
+					<label for="mastercard">Master Card</label><br>
+				</tr>
+				<tr>
+					<input type="radio" name="tarjeta" value="americanexpress">
+				</tr>
+				<label for="americanexpress">American Express</label><br>
+				<tr>
+					<label for="nombre">Numero de tarjeta de credito</label>
+				</tr>
+				<tr><input type="text" name="numero"><br></tr>
+			</table>
+		</fieldset>
+		<input type="submit" value="Enviar">
+		<input type="reset" value="Borrar">
+	</form>
+</body>
+
+</html>
