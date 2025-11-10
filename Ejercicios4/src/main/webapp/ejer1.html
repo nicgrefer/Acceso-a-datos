@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Acceso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Página de Acceso</h1>
+
+    <form action="ServletDespachador" method="post">
+        <table>
+            <tr>
+                <td>Usuario</td>
+                <td><input type="text" name="usuario" required></td>
+            </tr>
+            <tr>
+                <td>Clave</td>
+                <td><input type="password" name="clave" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Entrar">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
