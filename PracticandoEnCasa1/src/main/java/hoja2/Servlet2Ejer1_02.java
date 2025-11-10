@@ -31,6 +31,7 @@ public class Servlet2Ejer1_02 extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		paramColor = config.getServletContext().getInitParameter("paramColor");
+		
 	}
 
 	/**
