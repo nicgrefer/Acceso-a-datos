@@ -42,7 +42,8 @@ public class ServetVotaciones extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ServletContext sc = getServletConfig().getServletContext();
-		HashMap<String, Votacion> mapVotos = sc.getAttribute("mapVotos")!= null? (HashMap<String,Votacion>)sc.getAttribute("mapVotos"): new HashMap<String,Votacion>();
+		HashMap<String, Votacion> mapVotos = sc.getAttribute("mapVotos")!= null? 
+				(HashMap<String,Votacion>)sc.getAttribute("mapVotos"): new HashMap<String,Votacion>();
 		String[]candidatos = request.getParameterValues("alumno")!= null? request.getParameterValues("alumno"): new String[] {"Blancos"};
 		
 		for (String c : candidatos) {
@@ -50,7 +51,9 @@ public class ServetVotaciones extends HttpServlet {
 			v.setNumVotos();
 			mapVotos.put(c, v);
 		}
-		
+		sc.setAttribute("mapVotos", mapVotos);
+
+		response.sendRedirect("Resultados.jsp");
 	}
 
 }
