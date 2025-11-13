@@ -44,12 +44,19 @@ public class ServetVotaciones extends HttpServlet {
 		ServletContext sc = getServletConfig().getServletContext();
 		HashMap<String, Votacion> mapVotos = sc.getAttribute("mapVotos")!= null? 
 				(HashMap<String,Votacion>)sc.getAttribute("mapVotos"): new HashMap<String,Votacion>();
-		String[]candidatos = request.getParameterValues("alumno")!= null? request.getParameterValues("alumno"): new String[] {"Blancos"};
 		
-		for (String c : candidatos) {
-			Votacion v = mapVotos.get(c)!= null ? mapVotos.get(c):new Votacion(c);
-			v.setNumVotos();
-			mapVotos.put(c, v);
+		if (sc.getAttribute("numUsers") != null && (Integer)sc.getAttribute("numUsers")>4) {
+			mapVotos = new HashMap<String, Votacion>();
+			sc.removeAttribute("numUsers");
+		}else {
+			sc.setAttribute("numUsers", sc.getAttribute("numUsers") == null? 1: (Integer) sc.getAttribute("numUsers"+1));
+			String[]candidatos = request.getParameterValues("alumno")!= null? request.getParameterValues("alumno"): new String[] {"Blancos"};
+			
+			for (String c : candidatos) {
+				Votacion v = mapVotos.get(c)!= null ? mapVotos.get(c):new Votacion(c);
+				v.setNumVotos();
+				mapVotos.put(c, v);
+			}
 		}
 		sc.setAttribute("mapVotos", mapVotos);
 
