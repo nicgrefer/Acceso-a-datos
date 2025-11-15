@@ -19,11 +19,12 @@ ArrayList <Incidencia> list = (ArrayList)application.getAttribute("listInc");
 		<td>Descripción</td>
 	</tr>
 	<tr>
-		<%for (Incidencia inc : list ) {%>
+		<%if (list != null) {
+		for (Incidencia inc : list ) {%>
 		<td><%=inc.getCodigo() %></td>
 		<td><%=inc.getTema() %></td>
 		<td><%=inc.getDescripcion() %></td>
-	</tr> <%}%>
+	</tr> <%}}%>
 </table>
 <form action="ServletIncidencia" method="post">
 	<input type="submit" name="boton" value="Volver"/>

@@ -31,7 +31,7 @@ public class ServletIncidencia extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		super.init(config);
 	}
 
 	/**
@@ -62,10 +62,10 @@ public class ServletIncidencia extends HttpServlet {
 			break;
 		}
 		case "Consultar": {
-			page = "ConsultarIncidencia.jsp";
+			page = "ConsultaIncidencias.jsp";
 			break;
 		}case "Volver": {
-			page = "AltaIncidencia.jsp";
+			page = "Incidencia.jsp";
 			break;
 		}
 		
@@ -73,6 +73,7 @@ public class ServletIncidencia extends HttpServlet {
 			break;
 		}
 		
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 }
