@@ -49,7 +49,7 @@ public class ServetVotaciones extends HttpServlet {
 			mapVotos = new HashMap<String, Votacion>();
 			sc.removeAttribute("numUsers");
 		}else {
-			sc.setAttribute("numUsers", sc.getAttribute("numUsers") == null? 1: (Integer) sc.getAttribute("numUsers"+1));
+			sc.setAttribute("numUsers", sc.getAttribute("numUsers") == null? 1: (Integer) sc.getAttribute("numUsers")+1);
 			String[]candidatos = request.getParameterValues("alumno")!= null? request.getParameterValues("alumno"): new String[] {"Blancos"};
 			
 			for (String c : candidatos) {
