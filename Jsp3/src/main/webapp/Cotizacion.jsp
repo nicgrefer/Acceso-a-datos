@@ -1,7 +1,7 @@
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="entities.Cotizacion,java.util.*,java.text.SimpleDateFormat"%>
+	import="controller.Cotizacion,java.util.*,java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,7 @@ String deshabilitar = application.getAttribute("acceso_"+fechaActual) != null
 				<td>Valor Nuevo</td>
 			</tr>
 			<%
-			HashMap<String, Cotizacion> cotizaciones = (HashMap<String, Cotizacion>) application.getAttribute("listCotiza");
+			HashMap<String, Cotizacion> cotizaciones = (HashMap<String, Cotizacion>) application.getAttribute("listaCotiza");
 				for (String key : cotizaciones.keySet()) {
 			%>
 			<tr>
@@ -54,4 +54,6 @@ String deshabilitar = application.getAttribute("acceso_"+fechaActual) != null
 			<%=deshabilitar%>>
 	</form>
 </body>
+
+
 </html>
