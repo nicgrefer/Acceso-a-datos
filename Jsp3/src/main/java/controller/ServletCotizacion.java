@@ -1,13 +1,19 @@
 package controller;
 
 import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
+
+import com.sun.swing.internal.plaf.basic.resources.basic;
 
 @WebServlet("/ServletCotizacion")
 public class ServletCotizacion extends HttpServlet {
@@ -40,11 +46,58 @@ public class ServletCotizacion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+/*
         String boton = request.getParameter("boton");
         String nombre = request.getParameter("nombre");
         String codigo = request.getParameter("password");
+       */ 
 
+    	String msj = "";
+        String pag = "";
+        ServletContext sc = getServletConfig().getServletContext();
+        HashMap<String, Cotizacion> cotizaciones = (HashMap<String, Cotizacion>) sc.getAttribute("listaCotiza");
+        HttpSession sesion = new HttpSession();
+        
+        switch (request.getParameter("boton")) {
+		case "Acceso": {
+			if (!request.getParameter("nombre").isEmpty() || !request.getParameter("password").isBlank()) {
+				msj = "(*) El nombre y el código pin son obligatorios";
+				pag = "/Acceso.jsp";
+			}else if (!request.getParameter("password").equalsIgnoreCase("123456")) {
+				msj = "(*) Las credenciales son incorrectos";
+				pag = "/Acceso.jsp";
+			}else {
+				synchronized (lock) {
+					sesion.setAttrinute()
+				}
+			}
+			break;
+		}
+		case "Cerrar" :{
+			sesion.invalidate();
+			pag = "/Acceso.jsp";
+			break;
+		}
+		case "Enviar" : {
+			Enumeration<String> parms = request.getParameterNames();
+			while (parms.hasMoreElements()) {
+				String type = parms.nextElement();
+				String valor  = request.getParameter(type);
+				Cotizacion c;
+				if (!type.equals("boton")) {
+					c = new Cotizacion(type, cotizaciones.get(type).getActual(),Double.valueOf(valor));
+					c.setEvalua();
+					cotizaciones.put(type, c);
+				}
+				
+			}
+			break;
+		}
+		default:
+			break;
+		}
+        
+/*
         // Si pulsó "Cerrar"
         if ("Cerrar".equals(boton)) {
             request.getSession().invalidate();
@@ -66,7 +119,8 @@ public class ServletCotizacion extends HttpServlet {
         	}else {
         		request.getRequestDispatcher("Cotizacion.jsp").forward(request, response);
         	}
-        }
+        }3
+        */
 
     }
 }
