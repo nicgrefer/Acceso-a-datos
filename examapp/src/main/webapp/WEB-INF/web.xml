@@ -17,4 +17,9 @@
   	<param-value>DAMM</param-value>
   </context-param>
   
+    <context-param>
+  	<param-name>DATOS</param-name>
+  	<param-value>DAMMMMM</param-value>
+  </context-param>
+  
 </web-app>
