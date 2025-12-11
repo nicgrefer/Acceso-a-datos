@@ -12,7 +12,7 @@ public class ConexionBD {
 		 try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            conn = DriverManager.getConnection(
-	                    "jdbc:mysql://localhost:3306/pruebas", "root", "");
+	                    "jdbc:mysql://localhost:3306/matriculas/alumnos", "root", "");
 
 	            if (conn != null) {
 	                System.out.println("Conexion correcta a la base de datos");
