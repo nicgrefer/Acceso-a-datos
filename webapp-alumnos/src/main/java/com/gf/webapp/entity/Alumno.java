@@ -7,6 +7,10 @@ public class Alumno {
 	private String Curso;
 	private String Ciclo;
 	
+	public Alumno(String nombre2, String apellido2, String curso2, String ciclo2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getIdmatricula() {
 		return Nombre.substring(0,2)+Apellido.substring(0,2);
 	}
