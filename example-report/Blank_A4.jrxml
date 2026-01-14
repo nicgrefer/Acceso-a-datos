@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9d825102-6c18-4ad0-bf02-7f42d11c2838">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZW1wbGVhZG9zICwxNSwxNSxmYjkxN2Y0OC1hNGEyLTQ3ODEtOTc1Mi03NTZiNjY4MmM0OWU7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="474"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="515"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM empleados]]>
+	</queryString>
+	<field name="emplNo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="emplNo"/>
+		<property name="com.jaspersoft.studio.field.label" value="emplNo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<field name="oficio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="oficio"/>
+		<property name="com.jaspersoft.studio.field.label" value="oficio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<field name="salario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="salario"/>
+		<property name="com.jaspersoft.studio.field.label" value="salario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<field name="numDpto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numDpto"/>
+		<property name="com.jaspersoft.studio.field.label" value="numDpto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleados"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="22" width="180" height="40" uuid="21ef6c8d-a03a-4a62-b065-011a4bb3e3e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="25"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="10" y="10" width="270" height="30" uuid="3a2e448c-0b7e-4fc6-8d89-cd3c42fbd906"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="15" width="100" height="30" uuid="5a5da352-f518-4749-83eb-b11be65c87c4"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="15" width="100" height="30" uuid="a64e3628-32ef-4368-bc2b-38e0c5d5bc29"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="15" width="100" height="30" uuid="6f81c1ce-7fe4-4dec-b2df-dbfed522cafa"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Oficio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="15" width="100" height="30" uuid="dc39d28f-846e-4522-8c11-b85b95999066"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Salario]]></text>
+			</staticText>
+			<line>
+				<reportElement x="20" y="50" width="480" height="1" uuid="9bfc0d92-b604-49b3-b6d1-7295ee4c4bd1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="10" width="100" height="30" uuid="ffcf4e6c-de19-401e-a3ba-d6500be91e71"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="10" width="100" height="30" uuid="6679deab-2b4f-4e26-98ab-6328ccc08d97"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="10" width="100" height="30" uuid="8e405893-662c-4c27-9da4-f07869bddf26"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{oficio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="10" width="100" height="30" uuid="53150485-1bd6-4ae6-b4cf-9b9329efbd10"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salario}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="20" y="40" width="470" height="1" uuid="95af43fb-22ef-4c71-a114-53ddb0e315f6"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
