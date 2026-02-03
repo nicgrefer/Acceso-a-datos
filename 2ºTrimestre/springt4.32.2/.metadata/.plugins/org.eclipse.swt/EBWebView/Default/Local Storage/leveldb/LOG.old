@@ -1,2 +1,3 @@
-2026/02/02-19:39:03.797 7d0c Creating DB D:\Acceso-a-datos\2ºTrimestre\springt4.32.2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
-2026/02/02-19:39:03.811 7d0c Reusing MANIFEST D:\Acceso-a-datos\2ºTrimestre\springt4.32.2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/03-18:52:34.037 4054 Reusing MANIFEST D:\Acceso-a-datos\2ºTrimestre\springt4.32.2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/03-18:52:34.044 4054 Recovering log #3
+2026/02/03-18:52:34.046 4054 Reusing old log D:\Acceso-a-datos\2ºTrimestre\springt4.32.2\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 

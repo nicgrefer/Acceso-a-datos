@@ -18,6 +18,7 @@ public class BancoController {
 	
 	@Autowired
 	ClientesServices clientes;
+	@Autowired
 	CuentasServices cuentas;
 	
 	
