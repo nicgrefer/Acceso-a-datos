@@ -26,7 +26,7 @@ public class LotesServicesImple implements LotesServices {
 	}
 
 	@Override
-	public List<Lote> findAll(Lote l) {
+	public List<Lote> findAll() {
 		// TODO Auto-generated method stub
 		return lotes.findAll();
 	}

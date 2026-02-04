@@ -24,4 +24,5 @@ public class Sociedad {
 	
 	@OneToMany// 1 sociedad- N socios 
 	private List<Socio> socios;
+	
 }

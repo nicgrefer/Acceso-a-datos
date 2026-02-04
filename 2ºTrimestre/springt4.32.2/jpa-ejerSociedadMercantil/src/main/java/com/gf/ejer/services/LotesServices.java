@@ -9,6 +9,6 @@ public interface LotesServices {
 
 	Lote save(Lote l);
 	Optional<Lote> findId(Long id);
-	List<Lote> findAll(Lote l);
+	List<Lote> findAll();
 
 }

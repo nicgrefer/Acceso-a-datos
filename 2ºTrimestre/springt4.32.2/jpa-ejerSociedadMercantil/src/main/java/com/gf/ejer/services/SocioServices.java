@@ -8,9 +8,10 @@ import com.gf.ejer.models.Socio;
 public interface SocioServices {
 
 	void save(Socio s);
-	List<Socio> findAll(Socio s);
+	List<Socio> findAll();
 	Optional<Socio> findId(Long id);
 	Optional<Socio> delete(Long id);
 	Optional<Socio> update(Long id);
+
 
 }
