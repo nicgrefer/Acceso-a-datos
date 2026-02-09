@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +28,9 @@ public class Competicion {
 	private int ano;
 	private LocalDate fecha;
 	
-	@ManyToMany
+	@ManyToMany 
 	private Set<Centro>centro;
-	@ManyToMany(mappedBy = "competicion")
+	@OneToMany @JoinColumn(name = "competicion_id")
 	private Set<Participante>participantes;
 	
 }
