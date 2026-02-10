@@ -40,8 +40,7 @@ public class CentroServiceImple implements GeneralService<Centro> {
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		centro.deleteById(id);
 	}
 
 }

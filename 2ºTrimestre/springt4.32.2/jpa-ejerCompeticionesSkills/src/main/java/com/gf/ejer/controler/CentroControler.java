@@ -28,7 +28,7 @@ public class CentroControler {
 	}
 	
 	@GetMapping("/centro")
-	public List<Centro> getAll(@RequestBody Centro centro){
+	public List<Centro> getAll(){
 		return centroService.findAll();
 	}
 	
@@ -43,8 +43,8 @@ public class CentroControler {
 	}
 	
 	@DeleteMapping("/centro/{id}")
-	public void deleteCentro(@RequestBody Centro centro) {
-		centroRepository.delete(centro);
+	public void deleteCentro(@PathVariable Long id) {
+		centroService.delete(id);
 	}
 
 }
