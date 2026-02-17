@@ -26,7 +26,7 @@ public class Operacion {
 
     @ManyToOne @JoinColumn(name = "id_inversor")
     private Inversor inversor;
-    @ManyToOne @JoinColumn(name = "id_mercado")
+    @ManyToOne @JoinColumn(name = "pais")
     private Mercado mercado;
 
 }

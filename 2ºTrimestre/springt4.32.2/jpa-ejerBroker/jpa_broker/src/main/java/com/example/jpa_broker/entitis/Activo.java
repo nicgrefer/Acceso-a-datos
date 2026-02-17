@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +16,8 @@ public class Activo {
     private Long id;
     private Double num_inicial;
     private Double num_final;
+
+    @OneToMany
+    private TipoActivo tipoActivo;
+
 }
